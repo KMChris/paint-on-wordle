@@ -45,17 +45,26 @@ class Grid:
                 row_str += f"{cell_char}"
             print(row_str)
 
-def print_words(words):
-    if words is None:
-        print("No matching words found.")
-    elif not words:
-        print("No constraints provided.")
-    else:
+def print_words(words, find_all):
+    if find_all:
         print("Matching words:")
-        for word in words:
-            print(word.upper() if word else "No match")
+        for i, word in enumerate(words, 1):
+            if word:
+                content = ", ".join(w.upper() for w in word)
+                print(f"{i}. {content}")
+            else:
+                print(f"{i}. No matches found.")
+    else:
+        if words is None:
+            print("No matching words found.")
+        elif not words:
+            print("No constraints provided.")
+        else:
+            print("Matching words:")
+            for i, word in enumerate(words, 1):
+                print(f"{i}.", word.upper() if word else "No match")
 
-def main():
+def main(find_all=False, flexible=False):
     grid = Grid(GRID_WIDTH, GRID_HEIGHT)
     solution = Solution(input("Enter the solution word: "))
 
@@ -76,9 +85,8 @@ def main():
                 grid.toggle_cell()
             elif key == keyboard.Key.enter:
                 grid.draw(show_cursor=False)
-                solution.set_grid(grid.grid)
-                words = solution.find_solution()
-                print_words(words)
+                words = solution.find_solution(grid.grid, find_all, flexible)
+                print_words(words, find_all)
                 return False
             elif key == keyboard.Key.esc:
                 return False
