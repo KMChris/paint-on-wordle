@@ -22,7 +22,7 @@ Perfect for creating specific shapes/pixel art on your Wordle grid or solving tr
 
 Install the package directly from PyPI:
 
-```
+```bash
 pip install paint-on-wordle
 ```
 
@@ -34,17 +34,15 @@ Once installed, you can run the tool using the command `paint-wordle`.
 
 Run without any arguments to start the interactive mode. The tool will guide you through setting the target word and painting the grid row by row.
 
-```
+```bash
 paint-wordle
 ```
 
 **Controls:**
 *   **Arrows / WASD**: Move cursor between tiles.
 *   **Space**: Toggle tile color (⬛ Gray -> 🟨 Yellow -> 🟩 Green).
-*   **Enter**: Confirm current row pattern and find matching words.
+*   **Enter**: Confirm pattern and find matching words.
 *   **Esc**: Exit the program.
-
----
 
 ### 2. Instant Solution Mode
 
@@ -73,25 +71,25 @@ Use command-line arguments to skip the wizard and get immediate answers. This is
 
 **Basic Exact Match:**
 Find a word that generates "Green, Gray, Gray, Gray, Gray" when the solution is "apple":
-```
+```bash
 paint-wordle --word apple --pattern 20000
 ```
 
 **Multiple Patterns:**
 Check three different rows at once:
-```
+```bash
 paint-wordle -w apple -p 20000 00100 22222
 ```
 
 **Using Flexible Mode:**
 You want a specific pattern, but you don't care if some Yellows become Greens (or vice versa), as long as the Grays stay Gray:
-```
+```bash
 paint-wordle -w apple -p 21001 --flexible
 ```
 
 **List All Candidates:**
 Show every single word that fits the pattern, not just the first one found:
-```
+```bash
 paint-wordle -w apple -p 00000 --find-all
 ```
 
@@ -100,18 +98,18 @@ paint-wordle -w apple -p 00000 --find-all
 If you want to contribute or run the code from source:
 
 1.  Clone the repository:
-    ```
+    ```bash
     git clone https://github.com/KMChris/paint-on-wordle.git
     cd paint-on-wordle
     ```
 
 2.  Install dependencies:
-    ```
+    ```bash
     pip install -r requirements.txt
     ```
 
 3.  Run via module:
-    ```
+    ```bash
     python -m src.main
     ```
 

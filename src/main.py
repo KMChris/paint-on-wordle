@@ -22,7 +22,10 @@ def run_solution(word, patterns, find_all=False, flexible=False):
     for pattern, words in zip(patterns, results):
         print(f"Pattern {pattern}:")
         if words:
-            print(f"  Found {len(words)} matches: {', '.join(words)}")
+            if find_all:
+                print(f"  Found {len(words)} matches: {', '.join(words)}")
+            else:
+                print(f"  Best match: {words}")
         else:
             print("  No matches found.")
 

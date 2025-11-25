@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "paint-on-wordle"
-version = "1.1.0"
+version = "1.2.0"
 description = "A reverse-engineering tool that turns your Wordle grid into a canvas. Tell it the colors you want, and it finds the exact words you need to type. Features an interactive CLI wizard and a smart flexible solver."
 readme = "README.md"
 authors = [{ name = "Krzysztof Mizgała", email = "krzysztof@mizgala.pl" }]
