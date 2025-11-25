@@ -1,15 +1,7 @@
+from .cli import main as cli_main
+from .solution import Solution
 import argparse
 import sys
-import os
-
-sys.path.append(os.path.join(os.path.dirname(__file__), "src"))
-
-try:
-    from src.cli import main as cli_main
-    from src.solution import Solution
-except ImportError as e:
-    print(f"Error importing modules: {e}")
-    sys.exit(1)
 
 def run_solution(word, patterns, find_all=False, flexible=False):
     solver = Solution(word)
@@ -23,8 +15,7 @@ def run_solution(word, patterns, find_all=False, flexible=False):
         except ValueError:
             print(f"Invalid pattern format: {pattern}. Use digits 0, 1, 2.")
             sys.exit(1)
-            
-    solver.set_grid(grid)
+    
     results = solver.find_solution(grid, find_all, flexible)
     
     print(f"Target Word: {word}")

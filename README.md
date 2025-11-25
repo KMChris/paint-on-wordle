@@ -1,5 +1,10 @@
 # 🎨 Paint on Wordle
 
+[![PyPI version](https://img.shields.io/pypi/v/paint-on-wordle?style=flat-square)](https://pypi.org/project/paint-on-wordle/)
+[![PyPI downloads](https://img.shields.io/pypi/dm/paint-on-wordle?style=flat-square)](https://pypi.org/project/paint-on-wordle/)
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg?style=flat-square)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/pypi/l/paint-on-wordle?style=flat-square)](https://opensource.org/licenses/MIT)
+
 **Make Wordle look exactly how you want!**
 
 Paint on Wordle is a powerful solver tool that allows you to reverse-engineer the game. Instead of guessing words to find a solution, you provide the **colors** (pattern) and the **solution word**, and the tool tells you exactly which words you need to type to create that pattern on the grid.
@@ -15,27 +20,22 @@ Perfect for creating specific shapes/pixel art on your Wordle grid or solving tr
 
 ## Installation
 
-1.  Clone the repository:
-    ```
-    git clone https://github.com/KMChris/paint-on-wordle.git
-    cd paint-on-wordle
-    ```
+Install the package directly from PyPI:
 
-2.  Install required dependencies:
-    ```
-    pip install -r requirements.txt
-    ```
+```
+pip install paint-on-wordle
+```
 
 ## Usage
 
-The program operates in two distinct modes based on the arguments provided.
+Once installed, you can run the tool using the command `paint-wordle`.
 
 ### 1. Interactive Wizard (Default)
 
-Run the program without any arguments to start the interactive mode. The tool will guide you through setting the target word and painting the grid row by row.
+Run without any arguments to start the interactive mode. The tool will guide you through setting the target word and painting the grid row by row.
 
 ```
-python main.py
+paint-wordle
 ```
 
 **Controls:**
@@ -43,6 +43,8 @@ python main.py
 *   **Space**: Toggle tile color (⬛ Gray -> 🟨 Yellow -> 🟩 Green).
 *   **Enter**: Confirm current row pattern and find matching words.
 *   **Esc**: Exit the program.
+
+---
 
 ### 2. Instant Solution Mode
 
@@ -61,7 +63,8 @@ Use command-line arguments to skip the wizard and get immediate answers. This is
 
 *   **`--flexible` / `-f` (Smart Matching)**
     By default, the solver is strict. If you use this flag, it treats Green and Yellow as interchangeable hits while strictly enforcing Gray spots.
-    *   *Logic:* It searches for an **exact match first**. If none exists, it finds the closest match by performing the minimum number of color swaps necessary.
+    
+    *Logic:* It searches for an **exact match first**. If none exists, it finds the closest match by performing the minimum number of color swaps necessary.
 
 *   **`--find-all` / `-a`**
     Lists **all** valid candidates found for each pattern instead of showing only the single best word.
@@ -71,30 +74,50 @@ Use command-line arguments to skip the wizard and get immediate answers. This is
 **Basic Exact Match:**
 Find a word that generates "Green, Gray, Gray, Gray, Gray" when the solution is "apple":
 ```
-python main.py --word apple --pattern 20000
+paint-wordle --word apple --pattern 20000
 ```
 
 **Multiple Patterns:**
 Check three different rows at once:
 ```
-python main.py -w apple -p 20000 00100 22222
+paint-wordle -w apple -p 20000 00100 22222
 ```
 
 **Using Flexible Mode:**
 You want a specific pattern, but you don't care if some Yellows become Greens (or vice versa), as long as the Grays stay Gray:
 ```
-python main.py -w apple -p 21001 --flexible
+paint-wordle -w apple -p 21001 --flexible
 ```
 
 **List All Candidates:**
 Show every single word that fits the pattern, not just the first one found:
 ```
-python main.py -w apple -p 00000 --find-all
+paint-wordle -w apple -p 00000 --find-all
 ```
+
+## Development
+
+If you want to contribute or run the code from source:
+
+1.  Clone the repository:
+    ```
+    git clone https://github.com/KMChris/paint-on-wordle.git
+    cd paint-on-wordle
+    ```
+
+2.  Install dependencies:
+    ```
+    pip install -r requirements.txt
+    ```
+
+3.  Run via module:
+    ```
+    python -m src.main
+    ```
 
 ## Project Structure
 
-*   `main.py`: Entry point. Handles argument parsing and mode selection.
-*   `src/cli.py`: Handles the interactive wizard interface.
+*   `src/main.py`: Entry point. Handles argument parsing and mode selection.
+*   `src/cli.py`: Handles the interactive wizard interface and user input.
 *   `src/solution.py`: Core logic, pattern calculation, and word filtering algorithms.
 *   `src/data/words.txt`: The dictionary of valid 5-letter words.

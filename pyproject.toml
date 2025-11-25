@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "paint-on-wordle"
+version = "1.0.0"
+description = "A reverse-engineering tool that turns your Wordle grid into a canvas. Tell it the colors you want, and it finds the exact words you need to type. Features an interactive CLI wizard and a smart flexible solver."
+readme = "README.md"
+authors = [{ name = "Krzysztof Mizgała", email = "krzysztof@mizgala.pl" }]
+license = "MIT"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+]
+keywords = ["python", "cli", "pixel-art", "pattern-matching", "reverse-engineering", "tui", "interactive-cli", "wordle", "terminal-game", "puzzle-solver", "wordle-solver"]
+dependencies = [
+    "pynput",
+]
+requires-python = ">=3.8"
+
+[project.scripts]
+paint-wordle = "src.main:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*"]
+
+[tool.setuptools.package-data]
+"src.data" = ["*.txt"]
+
+[project.urls]
+"Homepage" = "https://github.com/KMChris/paint-on-wordle"
+"Repository" = "https://github.com/KMChris/paint-on-wordle"
+"Bug Tracker" = "https://github.com/KMChris/paint-on-wordle/issues"

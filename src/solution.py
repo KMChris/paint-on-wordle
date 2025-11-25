@@ -1,16 +1,19 @@
 from collections import Counter
+import importlib.resources
+from . import data
 
 def load_words(filename="words.txt"):
     """
     Loads a list of valid Wordle words from a file.
 
     Args:
-        filename (str): Name of the file in 'src/data/' containing the word list.
+        filename (str): Name of the file in the data directory containing the word list.
 
     Returns:
         list[str]: A list of stripped, lowercased words.
     """
-    with open('src/data/' + filename, encoding="utf-8") as f:
+    resource = importlib.resources.files(data) / filename
+    with resource.open('r', encoding='utf-8') as f:
         return [line.strip() for line in f if line.strip()]
 
 def get_feedback(guess, target):

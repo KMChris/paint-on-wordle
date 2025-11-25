@@ -1,5 +1,5 @@
+from .solution import Solution
 from pynput import keyboard
-from solution import Solution
 
 GRID_WIDTH = 5
 GRID_HEIGHT = 6
